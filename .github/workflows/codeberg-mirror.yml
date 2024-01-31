@@ -2,10 +2,9 @@
 name: Mirror Sync
 on:
   push:
-    branches: ["main"]
-  workflow_dispatch: # Manual dispatch
-  schedule:
-    - cron: "0 */6 * * *"
+    branches:
+    - '**'
+
 jobs:
   codeberg:
     runs-on: ubuntu-latest
@@ -13,7 +12,8 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
-      - uses: pixta-dev/repository-mirroring-action@v1
+      - uses: spyoungtech/mirror-action@v0.5.1
         with:
-          target_repo_url: "git@codeberg.org:Tuxilio/sync-test.git"
-          ssh_private_key: ${{ secrets.CODEBERG_SSH }}
+          REMOTE: "https://codeberg.org/Tuxilio/sync-test.git"
+          GIT_USERNAME: tuxilio
+          GIT_PASSWORD: ${{ secrets.GIT_PASSWORD }}
