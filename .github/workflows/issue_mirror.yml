@@ -8,7 +8,7 @@ jobs:
       - name: Transfer issue
         uses: iaia/issue-copier@v1.X
         with:
-          GITHUB_OWNER: 'iaia'
-          GITHUB_REPOSITORY: 'issue-copier'
-          GITHUB_DEST_REPOSITORY: 'issue-copier-2'
+          GITHUB_OWNER: 'tuxilio'
+          GITHUB_REPOSITORY: 'sync-test'
+          GITHUB_DEST_REPOSITORY: 'https://codeberg.org/Tuxilio/sync-test'
           GITHUB_ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
