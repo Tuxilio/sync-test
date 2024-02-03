@@ -11,15 +11,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: API-Aufruf und Dankesnachricht senden
-      if: github.event_name == 'issues' && github.event.action == 'opened'
-      run: |
-        issue_number=$(jq -r .issue.number $GITHUB_EVENT_PATH)
-        owner=$(jq -r .repository.owner.login $GITHUB_EVENT_PATH)
-        repo=$(jq -r .repository.name $GITHUB_EVENT_PATH)
-        curl -X POST \
-          -H "Authorization: token $GITHUB_TOKEN" \
-          -d '{"body": "Vielen Dank für das Erstellen des Issues! Wir werden uns darum kümmern."}' \
-          "https://api.github.com/repos/$owner/$repo/issues/$issue_number/comments"
       if: github.event_name == 'issue_comment' && github.event.action == 'created'
       run: |
         comment_id=$(jq -r .comment.id $GITHUB_EVENT_PATH)
