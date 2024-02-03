@@ -1,4 +1,4 @@
-name: Issue erstellt
+name: Issue or comment created
 
 on:
   issues:
@@ -8,15 +8,20 @@ jobs:
   posten:
     runs-on: ubuntu-latest
     steps:
-    - name: Poste Issue auf Codeberg
+    - name: Post issue on Codeberg
       run: |
         URL="https://codeberg.org/"
         REPO="tuxilio/sync-test"
         TOKEN=${{ secrets.GIT_TOKEN }}
 
-        data="{\"title\": \"${{ github.event.issue.title }}\", \"body\": \"${{ github.event.issue.body }}\"}"
+        if [ "${{ github.event_name }}" == 'issues' ]; then
+          data="{\"title\": \"${{ github.event.issue.title }}\", \"body\": \"${{ github.event.issue.body }}\"}"
+          url=$URL"api/v1/repos/"$REPO"/issues"
+        else
+          data="{\"title\": \"Issue-Kommentar\", \"body\": \"${{ github.event.comment.body }}\"}"
+          url=$URL"api/v1/repos/"$REPO"/issues/${{ github.event.issue.number }}/comments"
+        fi       
         
-        url=$URL"api/v1/repos/"$REPO"/issues"
         response=$(curl -X POST -H "Authorization: token $TOKEN" -H "Content-Type: application/json" -d "$data" $url)
 
         echo "API-Answer: $response"
