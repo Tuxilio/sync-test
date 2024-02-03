@@ -12,7 +12,7 @@ jobs:
       run: |
         URL="https://codeberg.org/"
         REPO="tuxilio/sync-test"
-        TOKEN="IHR_TOKEN"
+        TOKEN=${{ secrets.GIT_TOKEN }}
 
         data="{\"title\": \"${{ github.event.issue.title }}\", \"body\": \"${{ github.event.issue.body }}\"}"
         
