@@ -21,5 +21,6 @@ jobs:
           -H "Authorization: token $GITHUB_TOKEN" \
           -d '{"body": "Vielen Dank für Ihren Kommentar zum Issue #'$issue_number'!"}' \
           "https://api.github.com/repos/$owner/$repo/issues/$issue_number/comments/$comment_id"
+          echo "RUN"
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
