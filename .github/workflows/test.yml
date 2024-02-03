@@ -1,0 +1,10 @@
+name: Manual Dispatch
+on:
+  repository_dispatch:
+    types: [manual]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print Test
+        run: echo "TEST"
