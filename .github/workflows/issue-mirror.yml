@@ -1,38 +1,28 @@
-name: Issue test
+name: Issue erstellt
 
 on:
   issues:
     types: [opened]
-  issue_comment:
-    types: [created]
 
 jobs:
-  issue_danke:
+  posten:
     runs-on: ubuntu-latest
     steps:
-    - name: Create Thanks
-      if: github.event_name == 'issues' && github.event.action == 'opened'
+    - name: Poste Issue auf Codeberg
       run: |
-        issue_number=$(jq -r .issue.number $GITHUB_EVENT_PATH)
-        owner=$(jq -r .repository.owner.login $GITHUB_EVENT_PATH)
-        repo=$(jq -r .repository.name $GITHUB_EVENT_PATH)
-        curl -X POST \
-          -H "Authorization: token $GITHUB_TOKEN" \
-          -d '{"body": "Vielen Dank für das Erstellen des Issues! Wir werden uns darum kümmern."}' \
-          "https://api.github.com/repos/$owner/$repo/issues/$issue_number/comments"
-  issue_comment:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Comment thanks
-      if: github.event_name == 'issue_comment' && github.event.action == 'created'
-      run: |
-        comment_id=$(jq -r .comment.id $GITHUB_EVENT_PATH)
-        owner=$(jq -r .repository.owner.login $GITHUB_EVENT_PATH)
-        repo=$(jq -r .repository.name $GITHUB_EVENT_PATH)
-        issue_number=$(jq -r .issue.number $GITHUB_EVENT_PATH)
-        curl -X POST \
-          -H "Authorization: token $GITHUB_TOKEN" \
-          -d '{"body": "Vielen Dank für Ihren Kommentar zum Issue #'$issue_number'!"}' \
-          "https://api.github.com/repos/$owner/$repo/issues/$issue_number/comments/$comment_id"
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        URL="https://codeberg.org/"
+        REPO="tuxilio/sync-test"
+        TOKEN="IHR_TOKEN"
+
+        data="{\"title\": \"${{ github.event.issue.title }}\", \"body\": \"${{ github.event.issue.body }}\"}"
+        
+        url=$URL"api/v1/repos/"$REPO"/issues"
+        response=$(curl -X POST -H "Authorization: token $TOKEN" -H "Content-Type: application/json" -d "$data" $url)
+
+        echo "API-Antwort: $response"
+
+        if [ $(echo "$response" | jq -r ".status_code") == 201 ]; then
+          echo "Issue erfolgreich erstellt"
+        else
+          echo "Fehler beim Erstellen des Issues: $response"
+        fi
