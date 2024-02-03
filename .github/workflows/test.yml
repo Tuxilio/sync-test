@@ -1,7 +1,5 @@
 name: Manual Dispatch
-on:
-  repository_dispatch:
-    types: [manual]
+on: workflow_dispatch
 jobs:
   test:
     runs-on: ubuntu-latest
