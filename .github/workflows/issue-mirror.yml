@@ -3,6 +3,8 @@ name: Issue or comment created
 on:
   issues:
     types: [opened]
+  issue_comment:
+    types: [created]
 
 jobs:
   posten:
