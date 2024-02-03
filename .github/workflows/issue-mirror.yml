@@ -1,5 +1,3 @@
-name: Issue or comment created
-
 on:
   issues:
     types: [opened]
@@ -15,11 +13,9 @@ jobs:
         URL="https://codeberg.org/"
         REPO="tuxilio/sync-test"
         TOKEN=${{ secrets.GIT_TOKEN }}
-
-        poster=${{ github.event.issue.user.login }}
         
         if [ "${{ github.event_name }}" == 'issues' ]; then
-          data="{\"title\": \"${{ github.event.issue.title }}\", \"body\": \"Posted by: [@${{ github.event.issue.user.login }}](https://github.com/)\nLink to the issue: https://github.com/${{ github.repository }}/issues/${{ github.event.issue.number }\n${{ github.event.issue.body }}\"}"
+          data="{\"title\": \"${{ github.event.issue.title }}\", \"body\": \"Posted by: [@${{ github.event.issue.user.login }}](https://github.com/)\nLink to the issue: https://github.com/${{ github.repository }}/issues/${{ github.event.issue.number }}\n${{ github.event.issue.body }}\"}"
           url=$URL"api/v1/repos/"$REPO"/issues"
         else
           data="{\"title\": \"Issue-Kommentar\", \"body\": \"Posted by: [@${{ github.event.issue.user.login }}](https://github.com/)\nLink to the issue: https://github.com/${{ github.repository }}/issues/${{ github.event.issue.number }}\n${{ github.event.comment.body }}\"}"
