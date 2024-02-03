@@ -19,10 +19,4 @@ jobs:
         url=$URL"api/v1/repos/"$REPO"/issues"
         response=$(curl -X POST -H "Authorization: token $TOKEN" -H "Content-Type: application/json" -d "$data" $url)
 
-        echo "API-Antwort: $response"
-
-        if [ $(echo "$response" | jq -r ".status_code") == 201 ]; then
-          echo "Issue erfolgreich erstellt"
-        else
-          echo "Fehler beim Erstellen des Issues: $response"
-        fi
+        echo "API-Answer: $response"
