@@ -1,7 +1,14 @@
 name: test
 on:
   - repository_dispatch
-  - workflow_dispatch
+  - workflow_dispatch:
+    inputs:
+      action:
+        description: 'Action'
+        type: string
+      number:
+        description: 'Number'
+        type: integer
 jobs:
   test:
     runs-on: ubuntu-latest
