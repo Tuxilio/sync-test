@@ -6,5 +6,4 @@ jobs:
     steps:
       - name: Print Test
         run:
-          echo "TEST"
           echo ${{ github.event.client_payload.message }}
