@@ -7,7 +7,7 @@ on:
         type: string
       number:
         description: 'Number'
-        type: integer
+        type: string
 jobs:
   test:
     runs-on: ubuntu-latest
