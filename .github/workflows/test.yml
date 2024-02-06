@@ -1,5 +1,7 @@
 name: test
-on: repository_dispatch
+on:
+  - repository_dispatch
+  - workflow_dispatch
 jobs:
   test:
     runs-on: ubuntu-latest
