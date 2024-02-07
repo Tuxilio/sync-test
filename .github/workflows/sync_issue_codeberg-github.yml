@@ -21,6 +21,6 @@ jobs:
           echo Action: $action
           echo "::endgroup::"
 
-          if ["$action" = "created"]; then
+          if ["$action" = "created" ]; then
             echo "Created"
           fi
