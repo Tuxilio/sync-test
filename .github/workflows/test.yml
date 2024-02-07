@@ -7,6 +7,6 @@ jobs:
     steps:
       - name: Print Test
         env:
-          api: ${{ toJSON(${{ github.event.client_payload.body }}) }}
+          api: ${{ toJSON(github.event.client_payload.body) }}
         run: |
           echo api: $api
