@@ -8,8 +8,7 @@ jobs:
       - name: Print Test
         run: |
           raw_body=${{ github.event.client_payload.body }}
-          echo $raw_body
           body=${raw_body#payload=}
           echo $body
-          test=$(echo $body | jq -r .)
-          echo $test
+          decoded=$(echo -e "$(echo -n $body | sed 's/+/ /g; s/%/\\x/g')")
+          echo "$decoded" | jq .
