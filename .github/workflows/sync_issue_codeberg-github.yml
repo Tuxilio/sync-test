@@ -26,13 +26,20 @@ jobs:
 
             issue_author=$(echo $body | jq '.issue.user.login')
             issue_avatar_url=$(echo $body | jq '.issue.user.avatar_url')
-            issue_title=$(echo $body | jq '.issue.title')
+            issue_id=$(echo $body | jq '.issue.id')
             issue_body=$(echo $body | jq '.issue.body')
 
             echo Issue Author: $issue_author
             echo Issue User Url: $issue_avatar_url
-            echo Issue Title: $issue_title
+            echo Issue ID: $issue_id
             echo Issue Body: $issue_body
+
+            curl -L \
+              -X POST \
+              -H "Accept: application/vnd.github+json" \
+              -H "Authorization: Bearer ${{ secrets.GIT_GITHUB_TOKEN }}" \
+              https://api.github.com/repos/tuxilio/sync-test/issues/$issue_id/comments \
+              d '{"body":"$body"}'
 
             echo "::endgroup::"
           fi
