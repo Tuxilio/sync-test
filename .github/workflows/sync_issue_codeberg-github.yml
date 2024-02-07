@@ -21,6 +21,18 @@ jobs:
           echo Action: $action
           echo "::endgroup::"
 
-          if ["$action" = "created" ]; then
-            echo "Created"
+          if [ "$action" = '"created"'' ]; then
+            echo "::group::Creating Issue"
+
+            issue_author=$(echo $body | jq '.issue.user.login')
+            issue_avatar_url=$(echo $body | jq '.issue.user.avatar_url')
+            issue_title=$(echo $body | jq '.issue.title')
+            issue_body=$(echo $body | jq '.issue.body')
+
+            echo Issue Author: $issue_author
+            echo Issue User Url: $issue_avatar_url
+            echo Issue Title: $issue_title
+            echo Issue Body: $issue_body
+
+            echo "::endgroup::"
           fi
