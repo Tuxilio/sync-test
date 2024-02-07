@@ -17,4 +17,8 @@ jobs:
           echo "::endgroup::"
 
           echo "::group::Getting information"
+          action=$(echo $body | jq '.action')
+          issue_url=$(echo $body | jq '.issue.url')
 
+          echo Action: $action
+          echo API Url: $issue_url
