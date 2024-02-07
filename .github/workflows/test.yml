@@ -9,4 +9,5 @@ jobs:
         run: |
           raw_body=${{ github.event.client_payload.payload }}
           body=${raw_body#payload=}
-          echo $fromJson($body)
+          echo $body
+          test=$(fromJSON($body))
