@@ -11,4 +11,7 @@ jobs:
           raw_body=${{ github.event.client_payload.body }}
           body=${raw_body#payload=}
           decoded=$(echo -e "$(echo -n $body | sed 's/+/ /g; s/%/\\x/g')")
+
+          echo "::group::Full body"
           echo "$decoded" | jq .
+          echo "::endgroup::"
