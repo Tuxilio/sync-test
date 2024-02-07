@@ -8,6 +8,7 @@ jobs:
       - name: Print Test
         run: |
           raw_body=${{ github.event.client_payload.payload }}
+          echo ${{ github.event.client_payload.payload }}
           body=${raw_body#payload=}
           echo $body
           test=$(echo $body | jq -r .)
