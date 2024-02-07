@@ -6,6 +6,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Print Test
-        run:
+        run: |
           url_decoded=$(echo -n ${{ github.event.client_payload.body }} | sed 's/+/ /g; s/%/\\x/g' | xargs -0 printf)
           echo "$url_decoded" | jq .
