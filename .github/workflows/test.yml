@@ -6,9 +6,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Print Test
-        run:
+        run: |
           raw_body=${{ github.event.client_payload.payload }}
           echo ${{ github.event.client_payload.payload }}
+          echo $raw_body
           body=${raw_body#payload=}
           echo $body
           test=$(echo $body | jq -r .)
