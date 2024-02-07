@@ -18,7 +18,9 @@ jobs:
 
           echo "::group::Getting information"
           action=$(echo $body | jq '.action')
-          issue_url=$(echo $body | jq '.issue.url')
-
           echo Action: $action
-          echo API Url: $issue_url
+          echo "::endgroup::"
+
+          if ["$action" = "created"]; then
+            echo "Created"
+          fi
