@@ -6,7 +6,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Print Test
-        env:
-          api: ${{ toJSON(github.event.client_payload.body) }}
         run: |
-          echo api: $api
+          echo ${{ github.event.client_payload.body }}
