@@ -1,4 +1,4 @@
-name: test
+name: Codeberg -> GitHub Issue sync
 on:
   repository_dispatch
 jobs:
@@ -7,8 +7,8 @@ jobs:
     steps:
       - name: Print Test
         run: |
+          echo "Codeberg -> GitHub Issue sync"
           raw_body=${{ github.event.client_payload.body }}
           body=${raw_body#payload=}
-          echo $body
           decoded=$(echo -e "$(echo -n $body | sed 's/+/ /g; s/%/\\x/g')")
           echo "$decoded" | jq .
