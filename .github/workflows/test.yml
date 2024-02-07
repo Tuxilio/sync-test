@@ -7,4 +7,4 @@ jobs:
     steps:
       - name: Print Test
         run:
-          echo ${{ github.event.client_payload }}
+          echo ${{ github.event.client_payload.action }}
