@@ -2,10 +2,10 @@ name: Codeberg -> GitHub Issue sync
 on:
   repository_dispatch
 jobs:
-  test:
+  issue_sync:
     runs-on: ubuntu-latest
     steps:
-      - name: Print Test
+      - name: Codeberg -> GitHub Issue sync
         run: |
           echo "Codeberg -> GitHub Issue sync"
           raw_body=${{ github.event.client_payload.body }}
