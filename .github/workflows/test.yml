@@ -8,4 +8,4 @@ jobs:
       - name: Print Test
         run: |
           url_decoded=$(echo -n ${{ github.event.client_payload.body }} | sed 's/+/ /g; s/%/\\x/g')
-          echo "$url_decoded" | jq .
+          printf %b "$url_decoded" | jq
