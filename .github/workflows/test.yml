@@ -7,6 +7,5 @@ jobs:
     steps:
       - name: Print Test
         run:
-          encoded_text=${{ github.event.client_payload.body }}
-          url_decoded=$(echo -e "$(echo -n $encoded_text | sed 's/+/ /g; s/%/\\x/g')")
+          url_decoded=$(echo -e "$(echo -n ${{ github.event.client_payload.body }} | sed 's/+/ /g; s/%/\\x/g')")
           echo "$url_decoded" | jq .
