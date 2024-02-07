@@ -7,6 +7,6 @@ jobs:
     steps:
       - name: Print Test
         env:
-          api: ${{ toJSON(on.google_form.outputs.answers_map) }}
+          api: ${{ toJSON(${{ github.event.client_payload.body }}) }}
         run: |
           echo api: $api
