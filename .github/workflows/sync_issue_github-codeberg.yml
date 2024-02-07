@@ -1,4 +1,4 @@
-name: GitHub -> Codeberg Issue sync
+name: Issue sync GitHub -> Codeberg
 on:
   issues:
     types: [opened]
