@@ -21,7 +21,7 @@ jobs:
           echo Action: $action
           echo "::endgroup::"
 
-          if [ "$action" = '"created"'' ]; then
+          if [ "$action" = '"created"' ]; then
             echo "::group::Creating Issue"
 
             issue_author=$(echo $body | jq '.issue.user.login')
