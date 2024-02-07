@@ -8,4 +8,4 @@ jobs:
       - name: Print Test
         run: |
           echo "test"
-          echo ${{ fromJSON(github.event.client_payload.payload) }}
+          echo ${{ fromJSON('{"payload":' . github.event.client_payload.payload . '}') }}
