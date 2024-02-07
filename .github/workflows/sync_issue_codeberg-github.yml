@@ -1,4 +1,4 @@
-name: Issue sync Codeberg -> GitHub
+name: Issue sync (Codeberg -> GitHub)
 on:
   repository_dispatch
 jobs:
