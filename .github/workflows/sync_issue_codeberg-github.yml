@@ -34,6 +34,9 @@ jobs:
             echo Issue Number: $issue_number
             echo Issue Body: $issue_body
 
+            body=${body#\"}
+            body=${body%\"}
+
             curl -L \
               -X POST \
               -H "Accept: application/vnd.github+json" \
