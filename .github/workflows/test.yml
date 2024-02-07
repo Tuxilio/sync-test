@@ -7,5 +7,5 @@ jobs:
     steps:
       - name: Print Test
         run: |
-          body=${github.event.client_payload.payload#payload=}
+          body=${{github.event.client_payload.payload}#payload=}
           echo $fromJSON($body)
