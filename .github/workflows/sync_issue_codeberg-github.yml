@@ -34,8 +34,8 @@ jobs:
             echo Issue Number: $issue_number
             echo Issue Body: $issue_body
 
-            body=${body#\"}
-            body=${body%\"}
+            issue_body=${body#\"}
+            issue_body=${body%\"}
 
             echo Issue Body edited: $issue_body
 
@@ -44,7 +44,7 @@ jobs:
               -H "Accept: application/vnd.github+json" \
               -H "Authorization: Bearer ${{ secrets.GIT_GITHUB_TOKEN }}" \
               https://api.github.com/repos/tuxilio/sync-test/issues/$issue_number/comments \
-              d '{"body":"$body"}'
+              d '{"body":"$issue_body"}'
 
             echo "::endgroup::"
           fi
