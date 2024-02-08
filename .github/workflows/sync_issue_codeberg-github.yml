@@ -34,8 +34,8 @@ jobs:
             echo Issue Number: $issue_number
             echo Issue Body: $issue_body
 
-            issue_body=${body#\"}
-            issue_body=${body%\"}
+            issue_body=${issue_body#\"}
+            issue_body=${issue_body%\"}
 
             echo Issue Body edited: $issue_body
 
