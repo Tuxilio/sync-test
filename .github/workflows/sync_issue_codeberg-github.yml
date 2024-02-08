@@ -34,6 +34,9 @@ jobs:
             echo Issue Number: $issue_number
             echo Issue Body: $issue_body
 
+            body=${body#\"}
+            body=${body%\"}
+
             data="{\"body\":\"This is an automated sync.\n$issue_body\"}"
 
             echo Data: $data
