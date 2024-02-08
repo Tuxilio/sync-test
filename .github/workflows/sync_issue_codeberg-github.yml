@@ -36,6 +36,8 @@ jobs:
 
             data="{\"body\":\"This is an automated sync.\n$issue_body\"}"
 
+            echo Data: $data
+
             curl -L \
               -X POST \
               -H "Accept: application/vnd.github+json" \
