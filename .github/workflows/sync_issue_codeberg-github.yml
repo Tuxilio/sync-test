@@ -37,7 +37,7 @@ jobs:
             body=${body#\"}
             body=${body%\"}
 
-            data="{\"body\":\"This is an automated sync.\n$issue_body\"}"
+            data="{\"body\":\"This is an automated sync.\\n$issue_body\"}"
 
             echo Data: $data
 
