@@ -24,10 +24,10 @@ jobs:
           if [ "$action" = '"created"' ]; then
             echo "::group::Creating Issue"
 
-            issue_author=$(echo $body | jq '.issue.user.login')
-            issue_avatar_url=$(echo $body | jq '.issue.user.avatar_url')
-            issue_number=$(echo $body | jq '.issue.number')
-            issue_body=$(echo $body | jq '.issue.body')
+            issue_author=$(echo $body | jq '.comment.user.login')
+            issue_avatar_url=$(echo $body | jq '.comment.user.avatar_url')
+            issue_number=$(echo $body | jq '.comment.number')
+            issue_body=$(echo $body | jq '.comment.body')
 
             echo Issue Author: $issue_author
             echo Issue User Url: $issue_avatar_url
