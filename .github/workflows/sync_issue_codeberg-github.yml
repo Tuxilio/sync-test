@@ -46,7 +46,7 @@ jobs:
               echo "Already synchronized - nothing to do"
               
             else
-              issue_body="| <details><summary></summary>This is an issue created by automatic synchronization.</details> | [<img src="$issue_avatar_url" width="100">](https://codeberg.org/$issue_author) | [$issue_author](https://codeberg.org/$issue_author) commented on Codeberg | [Link to the issue]($issue_url)<br>|-|-|-|-|<br>$issue_body"
+              issue_body="| <details><summary></summary>This is an issue created by automatic synchronization.</details> | [<img src="$issue_avatar_url" width="25">](https://codeberg.org/$issue_author) | [$issue_author](https://codeberg.org/$issue_author) commented on Codeberg | [Link to the issue]($issue_url)<br>|-|-|-|-|<br>$issue_body"
               curl -L \
                 -X POST \
                 -H "Accept: application/vnd.github+json" \
