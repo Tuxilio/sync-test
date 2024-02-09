@@ -40,12 +40,12 @@ jobs:
             issue_body=${issue_body#\"}
             issue_body=${issue_body%\"}
 
-            if [[ $issue_body == "| <details><summary></summary>This is an issue created by automatic synchronization.</details> |"* ]]; then
+            if [[ $issue_body == "<p><table><tr><th><details><summary></summary>This is an issue created by automatic synchronization.</details>"* ]]; then
               echo "Already synchronized - nothing to do"
               
             else
-              issue_body="| <details><summary></summary>This is an issue created by automatic synchronization.</details> | [<img src="$issue_avatar_url" width="25">](https://codeberg.org/$issue_author) | [$issue_author](https://codeberg.org/$issue_author) commented on Codeberg | [Link to the issue]($issue_url)<br><br>|-|-|-|-|<br>$issue_body"
-              
+              issue_body="<p><table><tr><th><details><summary></summary>This is an issue created by automatic synchronization.</details></th><th><a href=https://codeberg.org/$issue_author><img src=$issue_avatar_url width=25></a></th><th><a href=https://codeberg.org/$issue_author>$issue_author</a> commented on Codeberg</th><th><a href="$issue_url">Link to the issue</a></th></p><br>$issue_body"
+
               echo New Issue body: $issue_body
               
               curl -L \
