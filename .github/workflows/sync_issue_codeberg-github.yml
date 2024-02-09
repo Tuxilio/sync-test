@@ -31,6 +31,9 @@ jobs:
             issue_body=$(echo $body | jq '.comment.body')
             issue_url=$(echo $body | jq '.comment.html_url')
 
+            issue_author=${issue_author#\"}
+            issue_author=${issue_author%\"}
+
             echo Issue Author: $issue_author
             echo Issue User Url: $issue_avatar_url
             echo Issue Number: $issue_number
