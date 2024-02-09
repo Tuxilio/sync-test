@@ -6,10 +6,10 @@ on:
     types: [created]
 
 jobs:
-  posten:
+  issue_sync:
     runs-on: ubuntu-latest
     steps:
-    - name: Post issue on Codeberg
+    - name: GitHub -> Codeberg Issue sync
       run: |
         URL="https://codeberg.org/"
         REPO="tuxilio/sync-test"
