@@ -12,14 +12,17 @@ jobs:
           raw_body=${raw_body_raw#payload=}
           body=$(echo -e "$(echo -n $raw_body | sed 's/+/ /g; s/%/\\x/g')")
 
+
+          echo "::group::Getting information"
           echo "::group::Full body"
           echo "$body" | jq .
           echo "::endgroup::"
-
-          echo "::group::Getting information"
+          echo "::group::Reading body"
           action=$(echo $body | jq '.action')
           echo Action: $action
           echo "::endgroup::"
+          echo "::endgroup::"
+
 
           if [ "$action" = '"created"' ]; then
             echo "::group::Creating Issue"
