@@ -15,7 +15,7 @@ jobs:
         REPO="tuxilio/sync-test"
         TOKEN=${{ secrets.GIT_TOKEN }}
 
-        if [[ ${{ github.event.issue.body }} == "<!--This is an issue created by automatic synchronization.-->"* ]]; then
+        if [[ "${{ github.event.issue.body }}" == "<!--This is an issue created by automatic synchronization.-->"* ]]; then
           echo "Already synchronized - nothing to do"
 
         else        
