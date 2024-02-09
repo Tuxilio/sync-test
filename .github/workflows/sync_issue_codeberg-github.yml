@@ -41,13 +41,17 @@ jobs:
             issue_body=${issue_body%\"}
 
 
-
-            curl -L \
-              -X POST \
-              -H "Accept: application/vnd.github+json" \
-              -H "Authorization: Bearer ${{ secrets.GIT_GITHUB_TOKEN }}" \
-              -d '{"body":'"$(echo -n "$issue_body" | jq -sR .)"'}' \
-              https://api.github.com/repos/tuxilio/sync-test/issues/$issue_number/comments
+            if [[ $issue_body == "<!--This is an issue created by automatic synchronization.-->"* ]]; then
+              echo "Already synchronized - nothing to do"
+              
+            else
+              curl -L \
+                -X POST \
+                -H "Accept: application/vnd.github+json" \
+                -H "Authorization: Bearer ${{ secrets.GIT_GITHUB_TOKEN }}" \
+                -d '{"body":'"$(echo -n "$issue_body" | jq -sR .)"'}' \
+                https://api.github.com/repos/tuxilio/sync-test/issues/$issue_number/comments
+            fi
 
             echo "::endgroup::"
           fi          
