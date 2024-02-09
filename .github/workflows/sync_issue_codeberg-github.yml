@@ -40,8 +40,7 @@ jobs:
             issue_body=${issue_body#\"}
             issue_body=${issue_body%\"}
 
-
-            if [[ $issue_body == "<!--This is an issue created by automatic synchronization.-->"* ]]; then
+            if [[ $issue_body == "| <details><summary></summary>This is an issue created by automatic synchronization.</details> |"* ]]; then
               echo "Already synchronized - nothing to do"
               
             else
