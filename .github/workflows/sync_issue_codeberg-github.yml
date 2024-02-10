@@ -59,7 +59,7 @@ jobs:
                 -H "Accept: application/vnd.github+json" \
                 -H "Authorization: Bearer ${{ secrets.GIT_GITHUB_TOKEN }}" \
                 -d '{"title":'"$(echo -n "$issue_title" | jq -sR .)"', "body":'"$(echo -n "$issue_body" | jq -sR .)"'}' \
-                https://api.github.com/repos/tuxilio/sync-test/issues/$issue_number/comments
+                https://api.github.com/repos/tuxilio/sync-test/issues
             fi
 
             echo "::endgroup::"
