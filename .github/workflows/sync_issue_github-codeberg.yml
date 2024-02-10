@@ -35,5 +35,5 @@ jobs:
                 url=$URL"api/v1/repos/"$REPO"/issues/${{ github.event.issue.number }}/comments"
             fi
     
-            curl -X POST -H "Authorization: token $TOKEN" -H "Content-Type: application/json" -d "$data" $url)
+            curl -X POST -H "Authorization: token $TOKEN" -H "Content-Type: application/json" -d "$data" $url
         fi
