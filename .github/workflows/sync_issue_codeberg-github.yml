@@ -33,18 +33,21 @@ jobs:
             issue_body=$(echo $body | jq '.issue.body')
             issue_url=$(echo $body | jq '.issue.html_url')
 
-            echo Issue Author: $issue_author
-            echo Issue User Url: $issue_avatar_url
-            echo Issue Number: $issue_number
-            echo Issue Title: $issue_title
-            echo Issue Body: $issue_body
-            echo Issue URL: $issue_url
+            issue_author=${issue_author#\"}
+            issue_author=${issue_author%\"}
 
             issue_title=${issue_title#\"}
             issue_title=${issue_title%\"}
 
             issue_body=${issue_body#\"}
             issue_body=${issue_body%\"}
+
+            echo Issue Author: $issue_author
+            echo Issue User Url: $issue_avatar_url
+            echo Issue Number: $issue_number
+            echo Issue Title: $issue_title
+            echo Issue Body: $issue_body
+            echo Issue URL: $issue_url
 
             if [[ $issue_body == "<p><table><tr><th><details><summary></summary>This is an issue created by automatic synchronization.</details>"* ]]; then
               echo "Already synchronized - nothing to do"
@@ -79,14 +82,14 @@ jobs:
             issue_author=${issue_author#\"}
             issue_author=${issue_author%\"}
 
+            issue_body=${issue_body#\"}
+            issue_body=${issue_body%\"}
+
             echo Issue Author: $issue_author
             echo Issue User Url: $issue_avatar_url
             echo Issue Number: $issue_number
             echo Issue Body: $issue_body
             echo Issue URL: $issue_url
-
-            issue_body=${issue_body#\"}
-            issue_body=${issue_body%\"}
 
             if [[ $issue_body == "<p><table><tr><th><details><summary></summary>This is an issue created by automatic synchronization.</details>"* ]]; then
               echo "Already synchronized - nothing to do"
