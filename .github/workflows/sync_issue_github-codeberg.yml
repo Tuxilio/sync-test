@@ -18,9 +18,6 @@ jobs:
         echo Issue body: "${{ github.event.issue.body }}"
         echo Comment body: "${{ github.event.comment.body }}"
 
-        if [[ "${{ github.event.issue.body }}" == "<p><table><tr><th><details><summary></summary>This is an issue created by automatic synchronization.</details>"* || "${{ github.event.comment.body }}" == "<p><table><tr><th><details><summary></summary>This is an issue created by automatic synchronization.</details>"* ]]; then
-          echo "Already synchronized - nothing to do"
-
         if [ "${{ github.event_name }}" == 'issues' ]; then
             if [[ "${{ github.event.issue.body }}" == "<p><table><tr><th><details><summary></summary>This is an issue created by automatic synchronization.</details>"* ]]; then
                 echo "Already synchronized - nothing to do"
