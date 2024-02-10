@@ -64,6 +64,7 @@ jobs:
 
             echo "::endgroup::"
 
+          fi
 
 
           if [ "$action" = '"created"' ]; then
