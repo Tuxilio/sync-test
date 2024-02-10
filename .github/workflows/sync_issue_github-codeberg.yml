@@ -1,0 +1,36 @@
+name: Issue sync (GitHub -> Codeberg)
+on:
+  issues:
+    types: [opened]
+  issue_comment:
+    types: [created]
+
+jobs:
+  issue_sync:
+    runs-on: ubuntu-latest
+    steps:
+    - name: GitHub -> Codeberg Issue sync
+      run: |
+        URL="https://codeberg.org/"
+        REPO="tuxilio/sync-test"
+        TOKEN=${{ secrets.GIT_TOKEN }}
+
+        echo Issue body: "${{ github.event.issue.body }}"
+        echo Comment body: "${{ github.event.comment.body }}"
+
+        if [[ "${{ github.event.issue.body }}" == "<p><table><tr><th><details><summary></summary>This is an issue created by automatic synchronization.</details>"* || "${{ github.event.comment.body }}" == "<p><table><tr><th><details><summary></summary>This is an issue created by automatic synchronization.</details>"* ]]; then
+          echo "Already synchronized - nothing to do"
+
+          else        
+            if [ "${{ github.event_name }}" == 'issues' ]; then
+              data="{\"title\": \"${{ github.event.issue.title }}\", \"body\": \"<p><table><tr><th><details><summary></summary>This is an issue created by automatic synchronization.</details></th><th><a href='https://github.com/${{ github.event.issue.user.login }}'><img src='https://github.com/${{ github.event.issue.user.login }}.png' width='25'></a></th><th> | <a href='https://github.com/${{ github.event.issue.user.login }}'>${{ github.event.issue.user.login }}</a> commented on GitHub<a href='https://github.com/${{ github.repository }}/issues/${{ github.event.issue.number }}'>Link to the issue</a></th></tr></table></p>${{ github.event.comment.body }}\"}"
+              url=$URL"api/v1/repos/"$REPO"/issues"
+            else
+              data="{\"title\": \"Issue-Kommentar\", \"body\": \"<p><table><tr><th><details><summary></summary>This is an issue created by automatic synchronization.</details></th><th><a href='https://github.com/${{ github.event.issue.user.login }}'><img src='https://github.com/${{ github.event.issue.user.login }}.png' width='25'></a></th><th> | <a href='https://github.com/${{ github.event.issue.user.login }}'>${{ github.event.issue.user.login }}</a> commented on GitHub<a href='https://github.com/${{ github.repository }}/issues/${{ github.event.issue.number }}'>Link to the issue</a></th></tr></table></p>${{ github.event.comment.body }}\"}"
+              url=$URL"api/v1/repos/"$REPO"/issues/${{ github.event.issue.number }}/comments"
+            fi
+    
+          response=$(curl -X POST -H "Authorization: token $TOKEN" -H "Content-Type: application/json" -d "$data" $url)
+
+          echo $response
+        fi
