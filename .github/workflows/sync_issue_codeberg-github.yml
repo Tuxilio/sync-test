@@ -23,7 +23,7 @@ jobs:
 
 
 
-          if [ "$action" = '"opened"']; then
+          if [ "$action" = '"opened"' ]; then
             echo "::group::Opening Issue"
 
             issue_author=$(echo $body | jq '.issue.user.login')
