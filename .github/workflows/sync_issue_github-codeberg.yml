@@ -39,7 +39,7 @@ jobs:
             fi
           fi
 
-          if [[ $sync == 0 ]]; then
+          if [[ $sync == 1 ]]; then
             echo "curl --> Already synchronized"
           else
             curl -X POST -H "Authorization: token $TOKEN" -H "Content-Type: application/json" -d "$data" $url
