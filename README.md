@@ -26,3 +26,9 @@ This is a syncing test between Codeberg and GitHub.
 - [ ] Sync Pull Requests
     - [ ] GitHub &rarr; Codeberg
     - [ ] Codeberg &rarr; GitHub
+
+## How to
+--- Documentation will be added later ---
+
+### Sync repos
+There is a nice tutorial about syncing repos: [Recommendations/Mirror_to_Codeberg](https://codeberg.org/Recommendations/Mirror_to_Codeberg/src/branch/main/README.md#github-mirror)
