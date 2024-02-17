@@ -15,5 +15,5 @@ jobs:
       - uses: spyoungtech/mirror-action@v0.5.1
         with:
           REMOTE: "https://codeberg.org/Tuxilio/sync-test.git"
-          GIT_USERNAME: tuxilio
+          GIT_USERNAME: tuxilio-sync-bot
           GIT_PASSWORD: ${{ secrets.GIT_PASSWORD }}
