@@ -2,6 +2,8 @@
 # sync-test
 This is a syncing test between Codeberg and GitHub.
 
+**I do not recommend mirroring your own code on GitHub. This is only a temporary solution for projects that do not want to switch.**
+
 ## Completion state
 - [x] Sync repos
     - [x] GitHub &rarr; Codeberg
