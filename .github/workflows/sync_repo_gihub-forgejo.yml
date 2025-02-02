@@ -20,10 +20,6 @@ jobs:
         run: |
           echo "Repo variables:"
           echo "  FORGEJO_SSH_PUSH_URL: ${{ vars.FORGEJO_SSH_PUSH_URL }}"
-      - name: "Delete HEAD branch"
-        run: |
-          git branch -d HEAD
-          git branch --all
       - name: "Sync repo"
         uses: spyoungtech/mirror-action@master
         with:
