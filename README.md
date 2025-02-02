@@ -5,15 +5,13 @@ This is a syncing test between Forgejo and GitHub.
 **I do not recommend mirroring your own code from Forgejo to GitHub. This is only a temporary solution for projects on Github that do not want to switch.**
 
 ## Completion state
-- [x] Sync repos
+- [x] Sync repo
     - [x] GitHub &rarr; Codeberg
+        - [x] Commits
+        - [x] Branches
     - [x] Codeberg &rarr; GitHub
-- [x] Sync branches
-    - [x] GitHub &rarr; Codeberg
-    - [x] Codeberg &rarr; GitHub
-- [x] Sync commits
-    - [x] GitHub &rarr; Codeberg
-    - [x] Codeberg &rarr; GitHub
+        - [ ] Commits
+        - [x] Branches
 - [ ] Sync Issues
     - [x] GitHub &rarr; Codeberg
         - [x] Opening Issues
