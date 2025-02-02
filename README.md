@@ -10,7 +10,7 @@ This is a syncing test between Forgejo and GitHub.
         - [x] Commits
         - [x] Branches
     - [x] Codeberg &rarr; GitHub
-        - [ ] Commits
+        - [x] Commits
         - [x] Branches
 - [ ] Sync Issues
     - [x] GitHub &rarr; Codeberg
