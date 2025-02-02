@@ -20,8 +20,13 @@ jobs:
         run: |
           echo "Repo variables:"
           echo "  FORGEJO_SSH_PUSH_URL: ${{ vars.FORGEJO_SSH_PUSH_URL }}"
+      - name: "Delete HEAD branch"
+        run: |
+          git branch -d HEAD
+          git branch --all
       - name: "Sync repo"
-        uses: pixta-dev/repository-mirroring-action@v1
+        uses: spyoungtech/mirror-action@master
         with:
-          target_repo_url: "${{ vars.FORGEJO_SSH_PUSH_URL }}"
-          ssh_private_key: ${{ secrets.FORGEJO_SSH_PRIVATE_KEY }}
+          REMOTE: "${{ vars.FORGEJO_SSH_PUSH_URL }}"
+          GIT_SSH_PRIVATE_KEY: ${{ secrets.FORGEJO_SSH_PRIVATE_KEY }}
+          GIT_SSH_NO_VERIFY_HOST: "true"
