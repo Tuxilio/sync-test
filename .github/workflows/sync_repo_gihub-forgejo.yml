@@ -3,11 +3,14 @@ name: Repo sync (GitHub -> Forgejo)
 on:
   push:
     branches:
-    - '**'
+      - '**'
+  workflow_dispatch: # Manual dispatch
+  schedule:
+    - cron: "0 */6 * * *"
 
 jobs:
   sync-repo-to-forgejo:
-    runs-on: ubuntu-latest
+    runs-on: debian-latest
     steps:
       - name: "Checkout"
         uses: actions/checkout@v2
@@ -18,8 +21,7 @@ jobs:
           echo "Repo variables:"
           echo "  FORGEJO_SSH_PUSH_URL: ${{ vars.FORGEJO_SSH_PUSH_URL }}"
       - name: "Sync repo"
-        uses: spyoungtech/mirror-action@master
+        uses: pixta-dev/repository-mirroring-action@v1
         with:
-          REMOTE: "${{ vars.FORGEJO_SSH_PUSH_URL }}"
-          GIT_SSH_PRIVATE_KEY: ${{ secrets.FORGEJO_SSH_PRIVATE_KEY }}
-          GIT_SSH_NO_VERIFY_HOST: "true"
+          target_repo_url: "${{ vars.FORGEJO_SSH_PUSH_URL }}"
+          ssh_private_key: ${{ secrets.FORGEJO_SSH_PRIVATE_KEY }}
