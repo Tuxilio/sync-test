@@ -18,7 +18,7 @@ jobs:
           echo "Repo variables:"
           echo "  FORGEJO_SSH_PUSH_URL: ${{ vars.FORGEJO_SSH_PUSH_URL }}"
       - name: "Sync repo"
-        uses: spyoungtech/mirror-action@v0.5.1
+        uses: spyoungtech/mirror-action@master
         with:
           REMOTE: "${{ vars.FORGEJO_SSH_PUSH_URL }}"
           GIT_SSH_PRIVATE_KEY: ${{ secrets.FORGEJO_SSH_PRIVATE_KEY }}

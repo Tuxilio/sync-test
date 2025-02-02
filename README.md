@@ -1,8 +1,8 @@
 [Codeberg](https://codeberg.org/Tuxilio/sync-test) | [GitHub](https://github.com/Tuxilio/sync-test) 
 # sync-test
-This is a syncing test between Codeberg and GitHub.
+This is a syncing test between Forgejo and GitHub.
 
-**I do not recommend mirroring your own code on GitHub. This is only a temporary solution for projects that do not want to switch.**
+**I do not recommend mirroring your own code from Forgejo to GitHub. This is only a temporary solution for projects on Github that do not want to switch.**
 
 ## Completion state
 - [x] Sync repos
