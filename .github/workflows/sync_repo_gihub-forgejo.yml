@@ -20,6 +20,6 @@ jobs:
       - name: "Sync repo"
         uses: spyoungtech/mirror-action@v0.5.1
         with:
-          REMOTE: "$FORGEJO_SSH_PUSH_URL"
+          REMOTE: "${{ vars.FORGEJO_SSH_PUSH_URL }}"
           GIT_SSH_PRIVATE_KEY: ${{ secrets.FORGEJO_SSH_PRIVATE_KEY }}
           GIT_SSH_NO_VERIFY_HOST: "true"
