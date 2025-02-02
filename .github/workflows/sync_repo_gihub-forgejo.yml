@@ -16,7 +16,7 @@ jobs:
       - name: "Gather facts"
         run: |
           echo "Repo variables:"
-          echo "  FORGEJO_SSH_PUSH_URL: $FORGEJO_SSH_PUSH_URL"
+          echo "  FORGEJO_SSH_PUSH_URL: ${{ vars.FORGEJO_SSH_PUSH_URL }}"
       - name: "Sync repo"
         uses: spyoungtech/mirror-action@v0.5.1
         with:
