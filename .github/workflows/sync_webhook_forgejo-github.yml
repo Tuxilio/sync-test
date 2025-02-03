@@ -54,7 +54,7 @@ jobs:
               echo "Already synchronized - nothing to do"
               
             else
-              issue_body="<p><table><tr><th><details><summary></summary>This is an issue created by automatic synchronization.</details></th><th><a href=https://codeberg.org/$issue_author><img src=$issue_avatar_url width=25></a></th><th><a href=https://codeberg.org/$issue_author>$issue_author</a> commented on Forgejo</th><th><a href="$issue_url">Link to the issue</a></th></tr></table></p>\n\n$issue_body"
+              issue_body="<p><table><tr><th><details><summary></summary>This is an issue created by automatic synchronization.</details></th><th><a href=https://codeberg.org/$issue_author><img src=$issue_avatar_url width=25></a></th><th><a href=https://codeberg.org/$issue_author>$issue_author</a> commented on Forgejo</th><th><a href="$issue_url">Link to the issue</a></th></tr></table></p>$issue_body"
 
               echo New Issue body: $issue_body
               
@@ -96,7 +96,7 @@ jobs:
               echo "Already synchronized - nothing to do"
               
             else
-              issue_body="<p><table><tr><th><details><summary></summary>This is an issue created by automatic synchronization.</details></th><th><a href=https://codeberg.org/$issue_author><img src=$issue_avatar_url width=25></a></th><th><a href=https://codeberg.org/$issue_author>$issue_author</a> commented on Forgejo</th><th><a href="$issue_url">Link to the issue</a></th></tr></table></p>\n\n$issue_body"
+              issue_body="<p><table><tr><th><details><summary></summary>This is an issue created by automatic synchronization.</details></th><th><a href=https://codeberg.org/$issue_author><img src=$issue_avatar_url width=25></a></th><th><a href=https://codeberg.org/$issue_author>$issue_author</a> commented on Forgejo</th><th><a href="$issue_url">Link to the issue</a></th></tr></table></p>$issue_body"
 
               echo New Issue body: $issue_body
               
