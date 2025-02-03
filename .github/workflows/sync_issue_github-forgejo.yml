@@ -72,5 +72,9 @@ jobs:
           if [[ $sync == 1 ]]; then
             echo "curl --> Already synchronized"
           else
+            echo "::group::curl info"
+            echo "url: $url"
+            echo "data: $data"
+            echo "::endgroup::"
             curl -X POST -H "Authorization: token $TOKEN" -H "Content-Type: application/json" -d "$data" $url
           fi
