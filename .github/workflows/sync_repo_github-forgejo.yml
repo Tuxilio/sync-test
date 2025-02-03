@@ -19,11 +19,11 @@ jobs:
       - name: "Gather facts"
         run: |
           echo "Repo variables:"
-          echo "  FORGEJO_PUSH_URL: ${{ vars.FORGEJO_PUSH_URL }}"
+          echo "  FORGEJO_PUSH_URL: ${{ vars.FORGEJO_BASE_URL }}${{ vars.FORGEJO_REPO }}.git"
           echo "  FORGEJO_USERNAME: ${{ vars.FORGEJO_USERNAME }}"
       - name: "Sync repo"
         uses: spyoungtech/mirror-action@master
         with:
-          REMOTE: "${{ vars.FORGEJO_PUSH_URL }}"
+          REMOTE: "${{ vars.FORGEJO_BASE_URL }}${{ vars.FORGEJO_REPO }}.git"
           GIT_USERNAME: ${{ vars.FORGEJO_USERNAME }}
-          GIT_PASSWORD: ${{ secrets.FORGEJO_PASSWORD }}
+          GIT_PASSWORD: ${{ secrets._FORGEJO_TOKEN }}

@@ -1,4 +1,4 @@
-name: Issue sync (GitHub -> Codeberg)
+name: Issue sync (GitHub -> Forgejo)
 on:
   issues:
     types: [opened, deleted, pinned, unpinned, closed, reopened, assigned, unassigned, labeled, unlabeled, locked, unlocked, milestoned, demilestoned]
@@ -9,11 +9,11 @@ jobs:
   issue_sync:
     runs-on: ubuntu-latest
     steps:
-      - name: GitHub -> Codeberg Issue sync
+      - name: GitHub -> Forgejo Issue sync
         run: |
-          URL="https://codeberg.org/"
-          REPO="tuxilio/sync-test"
-          TOKEN=${{ secrets.GIT_TOKEN }}
+          URL=${{ vars.FORGEJO_BASE_URL }}"
+          REPO=${{ vars.FORGEJO_REPO }}"
+          TOKEN=${{ secrets._FORGEJO_TOKEN }}
 
           sync=0
 
