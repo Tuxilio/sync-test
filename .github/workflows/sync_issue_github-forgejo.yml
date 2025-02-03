@@ -6,7 +6,7 @@ on:
     types: [created]
 
 jobs:
-  issue_sync:
+  sync:
     runs-on: ubuntu-latest
     steps:
       - name: GitHub -> Forgejo Issue sync
@@ -22,17 +22,40 @@ jobs:
           echo "Event Name: ${{ github.event_name }}"
           echo "Type: ${{ github.event.action }}"
 
-          ##### Issue #####
+          ##################### Issue #####################
           if [ "${{ github.event_name }}" == 'issues' ]; then
-            if [[ "${{ github.event.issue.body }}" == "<p><table><tr><th><details><summary></summary>This is an issue created by automatic synchronization.</details>"* ]]; then
-              echo "Already synchronized - nothing to do"
-              sync=1
-            else
-              data="{\"title\": \"${{ github.event.issue.title }}\", \"body\": \"<p><table><tr><th><details><summary></summary>This is an issue created by automatic synchronization.</details></th><th><a href='https://github.com/${{ github.event.issue.user.login }}'><img src='https://github.com/${{ github.event.issue.user.login }}.png' width='25'></a></th><th><a href='https://github.com/${{ github.event.issue.user.login }}'>${{ github.event.issue.user.login }}</a> commented on GitHub</th><th><a href='https://github.com/${{ github.repository }}/issues/${{ github.event.issue.number }}'>Link to the issue</a></th></tr></table></p>${{ github.event.comment.body }}\"}"
-              url=$URL"api/v1/repos/"$REPO"/issues"
-            fi
 
-          ##### Issue comment #####
+            case "${{ github.event.action }}" in
+
+              opened)    #### OPENED ####
+                if [[ "${{ github.event.issue.body }}" == "<p><table><tr><th><details><summary></summary>This is an issue created by automatic synchronization.</details>"* ]]; then
+                  echo "Already synchronized - nothing to do"
+                  sync=1
+                else
+                  data="{\"title\": \"${{ github.event.issue.title }}\", \"body\": \"<p><table><tr><th><details><summary></summary>This is an issue created by automatic synchronization.</details></th><th><a href='https://github.com/${{ github.event.issue.user.login }}'><img src='https://github.com/${{ github.event.issue.user.login }}.png' width='25'></a></th><th><a href='https://github.com/${{ github.event.issue.user.login }}'>${{ github.event.issue.user.login }}</a> commented on GitHub</th><th><a href='https://github.com/${{ github.repository }}/issues/${{ github.event.issue.number }}'>Link to the issue</a></th></tr></table></p>${{ github.event.comment.body }}\"}"
+                  url=$URL"api/v1/repos/"$REPO"/issues"
+                fi
+                ;;
+
+              closed)    #### CLOSED ####
+                echo "Closed issue"
+                ;;
+
+              labeled)    #### LABELED ####
+                echo "Labeled issue"
+                ;;
+
+              unlabeled)    #### UNLABELED ####
+                echo "Unalbeled"
+                ;;
+
+              *)
+                echo "Other type: ${{ github.event.action }}"
+                ;;
+            esac
+
+
+          ##################### Issue comment #####################
           elif [ "${{ github.event_name }}" == 'issue_comment' ]; then
             if [[ "${{ github.event.comment.body }}" == "<p><table><tr><th><details><summary></summary>This is an issue created by automatic synchronization.</details>"* ]]; then
               echo "Already synchronized - nothing to do"
@@ -44,6 +67,8 @@ jobs:
             fi
           fi
 
+
+          ##################### Finally send request #####################
           if [[ $sync == 1 ]]; then
             echo "curl --> Already synchronized"
           else
