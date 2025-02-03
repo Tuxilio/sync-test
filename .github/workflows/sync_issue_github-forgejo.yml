@@ -11,8 +11,8 @@ jobs:
     steps:
       - name: GitHub -> Forgejo Issue sync
         run: |
-          URL=${{ vars.FORGEJO_BASE_URL }}"
-          REPO=${{ vars.FORGEJO_REPO }}"
+          URL=${{ vars.FORGEJO_BASE_URL }}
+          REPO=${{ vars.FORGEJO_REPO }}
           TOKEN=${{ secrets._FORGEJO_TOKEN }}
 
           sync=0
