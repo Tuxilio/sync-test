@@ -1,8 +1,9 @@
-name: Issue sync (Codeberg -> GitHub)
+name: Issue sync (Forgejo -> GitHub)
 on:
   repository_dispatch
+
 jobs:
-  issue_sync:
+  sync:
     runs-on: ubuntu-latest
     steps:
       - name: Codeberg -> GitHub Issue sync
